@@ -1,0 +1,51 @@
+{
+  "notebook": "01_what_random_really_means",
+  "seed": 1,
+  "n_uniform": 100000,
+  "chi_square_bins": 100,
+  "generators": {
+    "MINSTD": {
+      "params": {
+        "a": 48271,
+        "c": 0,
+        "m": 2147483647
+      },
+      "mean": 0.49922851430379245,
+      "chi_square": 106.806,
+      "chi_square_p": 0.27829926313700704,
+      "serial_correlation_lag1": -0.004039592801706986,
+      "plane_fraction": 0.0,
+      "plane_count": 0,
+      "verdict": "usable"
+    },
+    "RANDU": {
+      "params": {
+        "a": 65539,
+        "c": 0,
+        "m": 2147483648
+      },
+      "mean": 0.501915157519281,
+      "chi_square": 107.75,
+      "chi_square_p": 0.25737245482514615,
+      "serial_correlation_lag1": 0.000793370397518229,
+      "plane_fraction": 1.0,
+      "plane_count": 15,
+      "verdict": "broken: all triples lie on 15 planes"
+    }
+  },
+  "findings": [
+    "Both generators pass a chi-square uniformity test at 100 bins.",
+    "Both generators show no lag-1 serial correlation.",
+    "Both generators fill the unit square when consecutive pairs are plotted.",
+    "RANDU places 100.0% of its triples on exactly 15 planes.",
+    "Marginal uniformity is not evidence of randomness; structure must be tested for."
+  ],
+  "figures": [
+    "01_uniformity_histograms",
+    "01_generator_pairs",
+    "01_randu_lattice_generic_view",
+    "01_randu_lattice_3d",
+    "01_minstd_lattice_3d",
+    "01_plane_projection"
+  ]
+}

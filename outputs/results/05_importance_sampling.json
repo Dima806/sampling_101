@@ -1,0 +1,65 @@
+{
+  "notebook": "05_importance_sampling",
+  "seed": 20260909,
+  "threshold": 5.199,
+  "truth": 1.0018176290247852e-07,
+  "one_in": 9981856.687563438,
+  "brute_force": {
+    "n_draws": 1000000,
+    "estimate": 0.0,
+    "standard_error": 0.0,
+    "events_observed": 0,
+    "expected_events": 0.10018176290247852,
+    "draws_needed_for_ten_events": 99818566.87563439
+  },
+  "good_proposal": {
+    "mean": 5.199,
+    "sd": 1.0,
+    "n_draws": 5000,
+    "estimate": 1.046388204035421e-07,
+    "standard_error": 3.5699231556240144e-09,
+    "relative_error": 0.04448970922384632,
+    "draws_in_event": 2528,
+    "ess_weights": 3.1726012803650803,
+    "ess_contributions": 733.2931139979235,
+    "max_weight_share": 0.002574799761905938,
+    "replicate_mean_over_truth": 0.9964064898528489,
+    "replicate_relative_sd": 0.03383653382030884
+  },
+  "bad_proposal": {
+    "mean": 0.0,
+    "sd": 1.5,
+    "n_draws": 5000,
+    "estimate": 1.792691005736634e-07,
+    "relative_error": 0.7894384704347046,
+    "draws_in_event": 2,
+    "ess_weights": 4146.245700027762,
+    "ess_contributions": 1.999630236933389,
+    "max_weight_share": 0.5067991859955358,
+    "replicate_mean_over_truth": 1.0050879592972488,
+    "replicate_relative_sd": 0.9103575163238339,
+    "times_worse_than_good": 26.90457365279635,
+    "share_of_runs_returning_zero": 0.25
+  },
+  "light_tailed_proposal_footnote": {
+    "mean": 5.199,
+    "sd": 0.25,
+    "theoretical_weight_variance": "infinite",
+    "replicate_relative_sd": 0.019970292162025217,
+    "note": "Lighter tail than the target, so the weight variance diverges in theory, but it outperforms the good proposal at n=5000 because the divergence lives beyond where the draws reach. Not a usable demonstration of failure."
+  },
+  "findings": [
+    "Brute force with 1,000,000 draws observed 0 events and returned an estimate of 0.0 with a standard error of 0.0.",
+    "Importance sampling recovered 1.0464e-07 against a true 1.0018e-07 (+4.4%) from 5,000 draws.",
+    "That is 200x less work than the brute force attempt that failed.",
+    "A proposal that leaves the event rare was 27x more variable and returned exactly zero in 25% of runs.",
+    "Plain weight-ESS reads BACKWARDS here: 3.2 for the good proposal against 4146 for the bad one. ESS must be computed on the contributions (733 vs 2.0).",
+    "The textbook light-tail failure mode is invisible at practical sample sizes."
+  ],
+  "figures": [
+    "05_tail_problem",
+    "05_contributions",
+    "05_proposal_spread",
+    "05_importance_convergence"
+  ]
+}

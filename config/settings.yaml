@@ -1,0 +1,50 @@
+# Every tunable the library, notebooks and app depend on.
+# Change numbers here, not in the notebooks, so a figure can always be regenerated
+# from a recorded seed.
+
+seed: 20260909
+n_simulations: 300
+
+prng:
+  n_uniform: 100000
+  chi_square_bins: 100
+  plane_tolerance: 1.0e-09
+
+draw:
+  n_samples: 50000
+  grid_points: 4096
+  exponential_rate: 1.5
+
+survey:
+  population_size: 100000
+  sample_size: 1000
+  strata_proportions: [0.70, 0.20, 0.08, 0.02]
+  strata_means: [30.0, 60.0, 120.0, 500.0]
+  strata_sds: [8.0, 15.0, 40.0, 200.0]
+  n_groups: 400
+  group_size: 25
+  between_group_sd: 12.0
+  within_group_sd: 4.0
+  # Tilt of the response propensity toward high values. 0.2 roughly doubles the top
+  # stratum's share of the response frame (2% of units -> 4.2%), a believable non-response
+  # pattern that still biases the mean by about 26%. Larger values are a caricature.
+  response_strength: 0.2
+
+monte_carlo:
+  n_darts: 200000
+  n_replicates: 200
+  checkpoint_max: 20000
+  checkpoint_points: 25
+
+importance:
+  # P(X > 5.199) for X ~ N(0, 1) is almost exactly 1e-7: one in ten million.
+  threshold: 5.199
+  n_brute_force: 1000000
+  n_importance: 5000
+  # Shifted onto the event, so roughly half of all draws land in it.
+  good_proposal_mean: 5.199
+  good_proposal_sd: 1.0
+  # Barely shifted: the event stays rare under the proposal too, so the estimate rests on
+  # one or two draws. The honest caveat, measured in notebook 05.
+  bad_proposal_mean: 0.0
+  bad_proposal_sd: 1.5

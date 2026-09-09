@@ -1,0 +1,114 @@
+{
+  "notebook": "04_monte_carlo",
+  "seed": 20260909,
+  "n_darts": 200000,
+  "n_replicates": 200,
+  "pi": {
+    "estimate": 3.1401,
+    "truth": 3.141592653589793,
+    "error": -0.0014926535897932247,
+    "standard_error": 0.003674360822597214,
+    "errors_in_se": 0.40623489685973346
+  },
+  "convergence": {
+    "fitted_log_log_slope": -0.5169024824826269,
+    "theoretical_slope": -0.5,
+    "checkpoints": [
+      100,
+      125,
+      156,
+      194,
+      242,
+      302,
+      376,
+      469,
+      585,
+      729,
+      909,
+      1134,
+      1414,
+      1764,
+      2199,
+      2742,
+      3420,
+      4265,
+      5318,
+      6632,
+      8270,
+      10313,
+      12861,
+      16038,
+      20000
+    ],
+    "rmse": [
+      0.17518309134839785,
+      0.1569477040599954,
+      0.14548250933852042,
+      0.11869638113407387,
+      0.10725825967021606,
+      0.09992948967042278,
+      0.08851664916008574,
+      0.07938536000136669,
+      0.06807521390392984,
+      0.06204700522934442,
+      0.05309324278952209,
+      0.04681235446945186,
+      0.039746117319923585,
+      0.03707609241698413,
+      0.033473155810939785,
+      0.029822084743743787,
+      0.026644142320381745,
+      0.024953657819947055,
+      0.02264586658622389,
+      0.020037515363253742,
+      0.017725645493067616,
+      0.0152851576781654,
+      0.01411091810909141,
+      0.012805782804773897,
+      0.011928774075104821
+    ],
+    "cost_of_accuracy": {
+      "10x_accuracy": 100,
+      "100x_accuracy": 10000
+    }
+  },
+  "integrals": {
+    "gaussian_0_to_1": {
+      "estimate": 0.7464278232426275,
+      "standard_error": 0.0004499499073460192,
+      "truth": 0.7468241328124269,
+      "error": -0.00039630956979941345
+    },
+    "sine_0_to_pi": {
+      "estimate": 2.001064060357753,
+      "standard_error": 0.002162949886136195,
+      "truth": 2.0,
+      "error": 0.0010640603577529717
+    }
+  },
+  "expectations": {
+    "E_X_squared": {
+      "estimate": 1.0057500181749317,
+      "standard_error": 0.003186855537954921,
+      "truth": 1.0
+    },
+    "E_abs_X": {
+      "estimate": 0.798086198323628,
+      "standard_error": 0.0013465962593125728,
+      "truth": 0.7978845608028654
+    }
+  },
+  "findings": [
+    "200,000 darts estimated pi as 3.14010 (error -0.00149).",
+    "The measured log-log error slope was -0.517, against a theoretical -0.5.",
+    "Accuracy costs quadratically: 10x more accuracy needs 100x more samples.",
+    "An integral with no elementary antiderivative was evaluated to 4 decimal places.",
+    "The same estimator handles areas, integrals and expectations without modification."
+  ],
+  "figures": [
+    "04_darts",
+    "04_pi_convergence",
+    "04_error_rate",
+    "04_integral_region"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "notebook": "03_when_your_sample_is_biased",
+  "seed": 20260909,
+  "population_size": 100000,
+  "sample_size": 1000,
+  "n_simulations": 300,
+  "true_mean": 52.683169376618686,
+  "strata": [
+    {
+      "stratum": 0,
+      "units": 70000,
+      "share_of_units": 0.7,
+      "share_of_total": 0.39819315285304324,
+      "mean": 29.968681880523842,
+      "sd": 7.9872945103410435,
+      "allocation_proportional": 700,
+      "allocation_neyman": 352
+    },
+    {
+      "stratum": 1,
+      "units": 20000,
+      "share_of_units": 0.2,
+      "share_of_total": 0.2280259498041921,
+      "mean": 60.065648678993014,
+      "sd": 14.906128882308357,
+      "allocation_proportional": 200,
+      "allocation_neyman": 188
+    },
+    {
+      "stratum": 2,
+      "units": 8000,
+      "share_of_units": 0.08,
+      "share_of_total": 0.1818922597445879,
+      "mean": 119.78325910525056,
+      "sd": 41.11542371099334,
+      "allocation_proportional": 80,
+      "allocation_neyman": 207
+    },
+    {
+      "stratum": 3,
+      "units": 2000,
+      "share_of_units": 0.02,
+      "share_of_total": 0.19188863759817673,
+      "mean": 505.46507980166723,
+      "sd": 201.2416238232923,
+      "allocation_proportional": 20,
+      "allocation_neyman": 253
+    }
+  ],
+  "designs": {
+    "simple_random": {
+      "mean": 52.50009374784335,
+      "sd": 2.528353301357607
+    },
+    "stratified_proportional": {
+      "mean": 52.61643935111196,
+      "sd": 0.9657967858078811,
+      "variance_reduction_vs_simple": 6.85336731776097
+    },
+    "stratified_neyman": {
+      "mean": 52.684411824706075,
+      "sd": 0.47648981147220126,
+      "variance_reduction_vs_simple": 28.15582667541974
+    }
+  },
+  "selection_bias": {
+    "response_bias": {
+      "truth": 52.683169376618686,
+      "estimate": 62.02696471226939,
+      "bias": 9.343795335650704,
+      "relative_bias": 0.17735826158928042,
+      "response_strength": 0.2,
+      "top_stratum_share_of_units": 0.02,
+      "top_stratum_share_of_frame": 0.0419065235627433
+    },
+    "more_data_does_not_help": {
+      "bias_at_500": 6.989056187997164,
+      "bias_at_50000": 13.316301412302316,
+      "frame_limit": 66.0949439079911,
+      "frame_limit_bias": 13.411774531372409
+    },
+    "convenience_frame": {
+      "truth": 52.683169376618686,
+      "estimate": 42.86866847826556,
+      "bias": -9.814500898353124,
+      "relative_bias": -0.18629290937664994,
+      "frame_share_of_units": 0.98
+    }
+  },
+  "grouped_data": {
+    "n_rows": 10000,
+    "n_entities": 400,
+    "leakage_random_row_split": 1.0,
+    "leakage_group_aware_split": 0.0,
+    "cluster_se": 1.5283462443629903,
+    "simple_random_se_same_rows": 0.3881344397513433,
+    "se_ratio": 3.937672331633644
+  },
+  "findings": [
+    "Stratified sampling cut the estimator variance 6.9x versus simple random, at identical sample size.",
+    "Neyman allocation cut it 28.2x.",
+    "Stratification removes variance, not bias.",
+    "Response bias shifted the estimate +17.7% and 100x more data did not reduce it.",
+    "A random row split leaked 100% of test entities into training; a group-aware split leaked none."
+  ],
+  "figures": [
+    "03_population_skew",
+    "03_estimate_spread",
+    "03_selection_bias",
+    "03_group_leakage"
+  ]
+}

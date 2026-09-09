@@ -1,0 +1,72 @@
+{
+  "notebook": "02_sampling_from_any_distribution",
+  "seed": 20260909,
+  "n_samples": 50000,
+  "inverse_transform": {
+    "exponential": {
+      "rate": 1.5,
+      "sample_mean": 0.6637604631998981,
+      "theoretical_mean": 0.6666666666666666,
+      "ks_statistic": 0.0032576570953922745,
+      "ks_p_value": 0.6622724114617171
+    },
+    "normal_numeric_grid": {
+      "grid_points": 4096,
+      "sample_mean": -0.00012426766446469513,
+      "sample_sd": 0.9995164447072419,
+      "ks_statistic": 0.003069894201660678,
+      "ks_p_value": 0.732436483692278
+    },
+    "bimodal": {
+      "observed_share_below_1": 0.506,
+      "exact_share_below_1": 0.5059276603373195,
+      "note": "0.6/0.4 scale unnormalised bumps of different widths, so they are not the mixture weights; the exact share comes from integrating the density."
+    }
+  },
+  "rejection": {
+    "envelope_constant_m": 3.1915382432114616,
+    "theoretical_acceptance_rate": 0.31332853432887503,
+    "empirical_acceptance_rate": 0.3116718128681623,
+    "n_proposed": 175534,
+    "n_kept": 50000,
+    "ks_statistic": 0.0033438822028225013,
+    "ks_p_value": 0.6297623191127654
+  },
+  "discrete": {
+    "target_probabilities": [
+      0.5,
+      0.25,
+      0.15,
+      0.08,
+      0.02
+    ],
+    "alias_frequencies": [
+      0.500055,
+      0.24931,
+      0.15133,
+      0.07945,
+      0.019855
+    ],
+    "cumulative_search_frequencies": [
+      0.498715,
+      0.251425,
+      0.14953,
+      0.080135,
+      0.020195
+    ],
+    "n_draws": 200000
+  },
+  "findings": [
+    "Inverse transform turns uniforms into any distribution via F^-1, exactly.",
+    "The inverse can be built numerically from the density alone, so the method is general.",
+    "An unnormalised density is enough: the normalising constant falls out of the integration.",
+    "Rejection sampling accepted 31.2% of proposals, matching the theoretical 1/m = 31.3%.",
+    "Every sampler here passes a KS test against its exact target distribution."
+  ],
+  "figures": [
+    "02_inverse_cdf_mechanism",
+    "02_inverse_transform_exponential",
+    "02_inverse_transform_bimodal",
+    "02_rejection_sampling"
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "notebook": "06_practical_guide",
+  "seed": 20260909,
+  "scoreboard": [
+    {
+      "claim": "A broken generator passes a uniformity test",
+      "measured": "RANDU chi-square p = 0.257",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "...and fails a structure test",
+      "measured": "100% of triples on 15 planes",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Inverse transform matches its target",
+      "measured": "KS p = 0.732",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Rejection acceptance rate equals 1/m",
+      "measured": "0.312 vs 0.313",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Stratifying cuts variance at no extra cost",
+      "measured": "6.9x lower",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Neyman allocation does better still",
+      "measured": "28.2x lower",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Selection bias survives more data",
+      "measured": "converges to 66.1, truth 52.7",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Random row splits leak entities",
+      "measured": "100% vs 0% group-aware",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Monte Carlo error falls as n^-1/2",
+      "measured": "fitted slope -0.517",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Brute force cannot see a 1e-7 event",
+      "measured": "0 events in 1,000,000 draws",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Importance sampling recovers it cheaply",
+      "measured": "+4.4% from 5,000 draws",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "A bad proposal is much worse",
+      "measured": "27x more variable",
+      "verdict": "confirmed"
+    },
+    {
+      "claim": "Light-tailed proposal fails at practical n",
+      "measured": "sd 0.020 vs 0.034",
+      "verdict": "NOT confirmed"
+    }
+  ],
+  "claims_confirmed": 12,
+  "claims_not_confirmed": 1,
+  "decision_guides": {
+    "sampling_and_splitting": {
+      "Rare or important subgroup that must be represented": "Stratify on it",
+      "Rows nest inside entities (users, patients, sites)": "Split and sample by entity",
+      "Subgroup variances differ a lot and sampling is costly": "Neyman allocation",
+      "Not everyone in the population could be sampled": "Fix the frame; no estimator saves you",
+      "Response depends on the thing being measured": "Reweight, or accept a biased answer",
+      "None of the above": "Simple random is fine, and report the standard error"
+    },
+    "computing": {
+      "Integral with no closed form": "Monte Carlo: sample, evaluate, average",
+      "High-dimensional integral": "Monte Carlo (the rate does not depend on dimension)",
+      "Expectation of an ugly function": "Monte Carlo with the same three lines",
+      "Probability of a common event": "Monte Carlo",
+      "Probability of a rare event": "Importance sampling, proposal centred on the event",
+      "Need 10x more accuracy": "Budget 100x the samples"
+    },
+    "choosing_a_sampler": {
+      "CDF invertible in closed form": "Inverse transform (exact, no waste)",
+      "Density known, CDF is not": "Inverse transform on a numeric grid",
+      "Density evaluable but hard to integrate": "Rejection sampling (costs 1/m)",
+      "Repeated draws from fixed categories": "Alias table (O(1) per draw)",
+      "Density known only up to a constant": "Rejection or self-normalised importance sampling"
+    }
+  },
+  "headline_numbers": {
+    "randu_plane_fraction": 1.0,
+    "randu_plane_count": 15,
+    "stratified_variance_reduction": 6.85336731776097,
+    "neyman_variance_reduction": 28.15582667541974,
+    "row_split_leakage": 1.0,
+    "monte_carlo_slope": -0.5169024824826269,
+    "rare_event_truth": 1.0018176290247852e-07,
+    "brute_force_estimate": 0.0,
+    "brute_force_draws": 1000000,
+    "importance_estimate": 1.046388204035421e-07,
+    "importance_draws": 5000,
+    "importance_relative_error": 0.04448970922384632
+  },
+  "worked_example": {
+    "truth": 52.683169376618686,
+    "biased_frame_estimate": 70.22211413947001,
+    "frame_limit": 66.0949439079911,
+    "simple_random": {
+      "value": 53.44833640703732,
+      "se": 2.280750471682872
+    },
+    "stratified_neyman": {
+      "value": 52.75536481365499,
+      "se": 0.4805705353234821
+    },
+    "se_improvement": 4.745922406890076
+  },
+  "rules": [
+    "Ask 'random with respect to what?' before every split and every sample.",
+    "Stratify on what matters; group by entity; interrogate the frame.",
+    "Unbiased is not precise, and more data cannot fix selection bias.",
+    "Monte Carlo turns intractable computation into sample-and-average, at n^-1/2.",
+    "Importance sampling reaches events brute force never will, if the proposal covers them.",
+    "Check diagnostics, not point estimates.",
+    "Seed everything and record the seed."
+  ],
+  "figures": [
+    "06_summary_table"
+  ]
+}
